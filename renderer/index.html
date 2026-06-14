@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarkdownParser</title>
+  <!-- Copyright (c) 2026 goshawker@yeah.net -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Toolbar -->
+    <div id="toolbar">
+      <div class="toolbar-group">
+        <button id="btn-open" title="Open (Cmd+O)">📂 Open</button>
+        <button id="btn-save" title="Save (Cmd+S)">💾 Save</button>
+        <div class="dropdown">
+          <button id="btn-recent" title="Recent Files">📁 ▾</button>
+          <div id="recent-menu" class="dropdown-menu hidden"></div>
+        </div>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button id="btn-export-html" title="Export as HTML">📤 HTML</button>
+        <button id="btn-export-pdf" title="Export as PDF">📤 PDF</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button id="btn-font-dec" title="Decrease Font Size (Cmd+-)">A-</button>
+        <span id="font-size-label">14px</span>
+        <button id="btn-font-inc" title="Increase Font Size (Cmd+=)">A+</button>
+        <button id="btn-font-reset" title="Reset Font Size (Cmd+0)">↺</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button id="btn-search" title="Search / Replace (Cmd+F)">🔍 Search</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button id="btn-sidebar" title="Toggle Sidebar (Cmd+B)">📑 Titles</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button id="btn-theme" title="Toggle Theme">🌙</button>
+        <button id="btn-check-update" title="Check for Updates">🔄</button>
+      </div>
+      <div id="file-info">
+        <span id="file-name">No file opened</span>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div id="search-bar" class="hidden">
+      <div class="search-row">
+        <input type="text" id="search-input" placeholder="Find..." />
+        <span id="search-count">0/0</span>
+        <button id="search-prev">▲</button>
+        <button id="search-next">▼</button>
+        <button id="search-close">✕</button>
+      </div>
+      <div class="search-row">
+        <input type="text" id="replace-input" placeholder="Replace..." />
+        <button id="replace-btn">Replace</button>
+        <button id="replace-all-btn">Replace All</button>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <div id="tab-bar">
+      <div id="tab-list"></div>
+    </div>
+
+    <!-- Main content -->
+    <div id="main">
+      <!-- Sidebar: title tree -->
+      <div id="sidebar">
+        <div class="sidebar-header">Titles</div>
+        <div id="title-tree"></div>
+      </div>
+
+      <!-- Editor -->
+      <div id="editor-panel">
+        <div class="panel-header">Editor</div>
+        <div id="editor-wrap">
+          <div id="line-numbers"></div>
+          <div id="search-highlights"></div>
+          <textarea id="editor" spellcheck="false" placeholder="Start typing markdown..."></textarea>
+        </div>
+      </div>
+
+      <!-- Resize handle -->
+      <div id="resize-handle"></div>
+
+      <!-- Preview -->
+      <div id="preview-panel" class="collapsed">
+        <div class="panel-header">
+          <span class="panel-title">Preview</span>
+          <button class="panel-toggle" id="btn-toggle-preview" title="Expand Preview">▶</button>
+        </div>
+        <div id="preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status bar -->
+  <div id="status-bar">
+    <span id="status-encoding">UTF-8</span>
+    <span id="status-total">0 字</span>
+    <span id="status-selected"></span>
+    <span id="status-cursor">行 1, 列 1</span>
+  </div>
+
+  <!-- Context menu -->
+  <div id="context-menu" class="hidden">
+    <div class="context-item" data-action="copy-title">Copy Title</div>
+    <div class="context-item" data-action="copy-content">Copy Title + Content</div>
+  </div>
+
+  <script src="../node_modules/marked/marked.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

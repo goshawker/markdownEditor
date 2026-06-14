@@ -1,0 +1,87 @@
+{
+  "name": "markdown-parser",
+  "version": "1.0.0",
+  "description": "Markdown Viewer & Parser",
+  "author": "goshawker <goshawker@yeah.net>",
+  "copyright": "Copyright (c) 2026 goshawker@yeah.net",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "pack": "electron-builder --dir",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "build": {
+    "appId": "com.markdown.parser",
+    "productName": "MarkdownParser",
+    "mac": {
+      "icon": "build/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity",
+      "fileAssociations": [
+        {
+          "ext": "md",
+          "name": "Markdown Document",
+          "description": "Markdown Document",
+          "role": "Editor"
+        },
+        {
+          "ext": "markdown",
+          "name": "Markdown Document",
+          "description": "Markdown Document",
+          "role": "Editor"
+        },
+        {
+          "ext": "txt",
+          "name": "Text Document",
+          "description": "Text Document",
+          "role": "Editor"
+        }
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "portable",
+        "zip"
+      ],
+      "fileAssociations": [
+        {
+          "ext": "md",
+          "name": "Markdown Document",
+          "description": "Markdown Document"
+        },
+        {
+          "ext": "markdown",
+          "name": "Markdown Document",
+          "description": "Markdown Document"
+        },
+        {
+          "ext": "txt",
+          "name": "Text Document",
+          "description": "Text Document"
+        }
+      ]
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^25.0.0",
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "marked": "^15.0.0",
+    "electron-updater": "^6.0.0"
+  }
+}
