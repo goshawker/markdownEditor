@@ -94,9 +94,9 @@ function updateLineNumbers() {
   const count = lines.length;
   let html = '';
   for (let i = 1; i <= count; i++) {
-    html += i + '\n';
+    html += '<div>' + i + '</div>';
   }
-  lineNumbers.textContent = html;
+  lineNumbers.innerHTML = html;
   lineNumbers.scrollTop = editor.scrollTop;
 }
 

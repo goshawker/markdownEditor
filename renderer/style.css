@@ -491,7 +491,7 @@ html, body {
   font-size: var(--font-size);
   line-height: 1.6;
   tab-size: 2;
-  overflow: hidden;
+  overflow: auto;
 }
 
 #editor::selection {
@@ -521,6 +521,10 @@ html, body {
   overflow: hidden;
   flex-shrink: 0;
   border-right: 1px solid var(--border);
+}
+
+#line-numbers div {
+  height: 1.6em;
 }
 
 #search-highlights {
